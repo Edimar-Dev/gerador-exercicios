@@ -39,26 +39,26 @@
                     <p class="text-info">Operações:</p>
 
                     <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" id="check_sum" name="check_sum" checked>
-                        <label class="form-check-label" for="check_sum">Soma</label>
+                        <input class="form-check-input" type="checkbox" id="check_soma" name="check_soma" checked>
+                        <label class="form-check-label" for="check_soma">Soma</label>
                     </div>
 
                     <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" id="check_subtraction" name="check_subtraction"
+                        <input class="form-check-input" type="checkbox" id="check_subtracao" name="check_subtracao"
                             checked>
-                        <label class="form-check-label" for="check_subtraction">Subtração</label>
+                        <label class="form-check-label" for="check_subtracao">Subtração</label>
                     </div>
 
                     <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" id="check_multiplication"
-                            name="check_multiplication" checked>
-                        <label class="form-check-label" for="check_multiplication">Multiplicação</label>
+                        <input class="form-check-input" type="checkbox" id="check_multiplicacao"
+                            name="check_multiplicacao" checked>
+                        <label class="form-check-label" for="check_multiplicacao">Multiplicação</label>
                     </div>
 
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="check_division" name="check_division"
+                        <input class="form-check-input" type="checkbox" id="check_divisao" name="check_divisao"
                             checked>
-                        <label class="form-check-label" for="check_division">Divisão</label>
+                        <label class="form-check-label" for="check_divisao">Divisão</label>
                     </div>
 
                 </div>
@@ -70,7 +70,7 @@
 
                     <div class="mb-3">
                         <label for="number_one">Mínimo:</label>
-                        <input type="number" class="form-control" id="number_one" name="number_one" min="0" max="999"
+                        <input type="number" class="form-control" id="numbero_one" name="number_one" min="0" max="999"
                             value="0">
                     </div>
 
@@ -88,8 +88,8 @@
                     <p class="text-info">Número de exercícios:</p>
 
                     <div class="mb-3">
-                        <label for="number_exercises">Número:</label>
-                        <input type="number" class="form-control" id="number_exercises" name="number_exercises" min="5"
+                        <label for="number_exercicio">Número:</label>
+                        <input type="number" class="form-control" id="number_exercicio" name="number_exercicio" min="5"
                             max="50" value="10">
                     </div>
 
@@ -105,9 +105,19 @@
 
     </form>
 
+    <!-- validation error -->
+    @if($errors->any())
+        <div class="container">
+            <div class="row">
+                <div class="alert alert-danger text-center mt-3">
+                    Selecione pelo menos uma operação. As parcelas devem ser entre os numeros 0 e 999. E o número de exercícos devem variar entre 5 e 50.
+                </div>
+            </div>
+        </div>
+    @endif
     <!-- footer -->
     <footer class="text-center mt-5">
-        <p class="text-secondary">MathX &copy; <span class="text-info">[ANO]</span></p>
+        <p class="text-secondary">OMT &copy; <span class="text-info">{{ date('Y')}}</span></p>
     </footer>
 
     <!-- bootstrap -->
