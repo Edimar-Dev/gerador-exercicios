@@ -26,10 +26,11 @@ class MainController extends Controller
 
         //selecionar operações
         $operacoes = [];
-        $operacoes [] = $request->check_soma ? 'soma' : ' ';
-        $operacoes [] = $request->check_subtracao ? 'subtracao' : ' ';
-        $operacoes [] = $request->check_multiplicacao ? 'multiplicacao' : ' ';
-        $operacoes [] = $request->check_dividao ? 'divisao' : ' ';
+
+        if($request->check_soma){$operacoes[] = 'soma'; }
+        if($request->check_subtracao){$operacoes[] = 'subtracao'; }
+        if($request->check_multiplicacao){$operacoes[] = 'multiplicacao'; }
+        if($request->check_divisao){$operacoes[] = 'divisao'; }
 
         //pegar numeros ->min e max
         $min = $request->number_one;
@@ -58,23 +59,35 @@ class MainController extends Controller
                     $solucao = $number1 - $number2;
                     break;
                 case 'multiplicacao':
-                    $exercico = "$number1 * $number2 =";
+                    $exercico = "$number1 x $number2 =";
                     $solucao = $number1 * $number2;
                     break;
                 case 'divisao':
-                    $exercico = "$number1 / $number2 =";
+
+                    if($number2 == 0){
+                        $number2 = 1;
+                    }//correcao de erro base zero
+
+                    $exercico = "$number1 : $number2 =";
                     $solucao = $number1 / $number2;
                     break;
             }
 
+            //arredondar para duas casas decimais 
+            if(is_float($solucao)){
+                $solucao = round($solucao, 2);
+            }
+
+
             $exercicos[] = [
+                'operacao' => $operacao,
                 'number_exercicio' => $index,
                 'exercicio' => $exercico,
                 'solucao' => "$exercico $solucao"
             ];
         }
 
-        // dd($exercicos); // debug
+        dd($exercicos); // debug
 
     }
 
